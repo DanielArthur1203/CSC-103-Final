@@ -28,6 +28,19 @@ optional<int> Player::getItemQuantity(string &itemName) const{
     return nullopt;
 }
 
+optional<int> Player::getItemQuantity(Item &item) const{
+    for(auto it = inventory.begin(); it != inventory.end(); ++it){
+        if(it->first == item){
+            return it->second;
+        }
+    }
+    return nullopt;
+}
+
+/// @brief Returns an Item object from the player's inventory if it exists
+/// @param itemName 
+/// @return If an item with name itemName is in the inventory then return the Item object as an optional<Item>
+///otherwise return nullopt
 optional<Item> Player::getItemFromInventory(string &itemName) const{
     for(auto it = inventory.begin(); it != inventory.end(); ++it){
         if(it->first.getItemName() == itemName){
@@ -40,7 +53,7 @@ optional<Item> Player::getItemFromInventory(string &itemName) const{
 void Player::printInventory() const{
     cout << "Your inventory: \n";
     for(auto it = inventory.begin(); it != inventory.end(); ++it){
-        cout << it->first.getItemName() << "................................" << it->second;
+        cout << it->first.getItemName() << " ................................ " << it->second << "\n";
     }
 }
 
@@ -66,4 +79,21 @@ void Player::addItem(Item &item, int quantity){
 
 void Player::setCurrency(int currency){
     this->currency = currency;
+}
+
+optional<int> Player::getItemIndex(Item &item) const{
+    for(int i = 0; i < inventory.size(); i++){
+        if(inventory.at(i).first == item){
+            return i;
+        }
+    }
+    return nullopt;
+}
+//only use if the index is within range
+void Player::increaseItemQuantity(int index, int quantity){
+    inventory.at(index).second += quantity;
+}
+
+void Player::inventoryCleanup(){
+    //TODO Remove an pairs in the inventory that a quantity less than or equal to 0
 }

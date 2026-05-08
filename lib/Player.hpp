@@ -26,13 +26,17 @@ class Player{
         int getAge() const;
         int getCurrency() const;
         optional<int> getItemQuantity(string &itemName) const;
+        optional<int> getItemQuantity(Item &item) const;
         optional<Item> getItemFromInventory(string &itemName) const;
+        optional<int> getItemIndex(Item &item) const;
         void printInventory() const;
         void setName(string &name);
         void setAge(int age);
         void addItem(Item &item);
         void addItem(Item &item, int quantity);
+        void increaseItemQuantity(int index, int quantity);
         void setCurrency(int currency);
+        void inventoryCleanup();
     private:
         string name;
         int age;

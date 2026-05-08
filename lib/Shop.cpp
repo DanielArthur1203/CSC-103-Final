@@ -1,10 +1,11 @@
 #include "Shop.hpp"
 #include "Player.hpp"
 #include <iostream>
+
 using namespace std;
 
 Shop::Shop(){
-
+    //TODO There should only be one shop instance so need to instantiate a bunch of Item objects and add then to inventory
 }
 
 optional<Item> Shop::getItemFromShop(string &name) const{
@@ -29,12 +30,27 @@ int Shop::getItemLocation(Item &item) const{
     return loc;
 }
 
+
 void Shop::buyItem(Player &player, string &itemName, int quantity){
     auto item = getItemFromShop(itemName);
     if(item.has_value()){
         if(quantity > to_underlying(extremeValues::minItemQuantity)){
-            int index = getItemLocation(item.value());
-            
+            if(player.getCurrency() >= quantity * item.value().getValue()){ //checking if player has enough currency to buy the item
+                int shopIndex = getItemLocation(item.value());
+                auto playerIndex = player.getItemIndex(item.value());
+                shopInventory.at(shopIndex).second--; //deduct quantity value from shop list
+
+                if(playerIndex.has_value()){//Not being nullopt implies that the item is already in the player's inventory
+                    player.increaseItemQuantity(playerIndex.value(), quantity);
+                    player.setCurrency(player.getCurrency() - (quantity * item.value().getValue()));
+                }
+                else{
+                    player.addItem(item.value(), quantity);
+                }
+            }
+            else{
+                cout << "You do not have enough currency to buy " << quantity << " " << itemName << "'s\n";
+            }
         }
         else{
             cout << "Please choose a purchase quantity greater than 0\n";
