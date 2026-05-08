@@ -4,6 +4,7 @@
 #include "Game.hpp"
 #include "Enemy.hpp"
 
+//Dictates the "events" that happen in the game
 class Event{
     public:
 
@@ -11,4 +12,3 @@ class Event{
         
 };
 #endif
-//Dictates the "events" that happen in the game

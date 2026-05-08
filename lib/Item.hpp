@@ -24,7 +24,6 @@ class Item{
         bool operator== (const Item &otherItem) const{
             return (this->itemName == otherItem.itemName) && (this->value == otherItem.value);
         }
-
         string getItemName() const;
         int getValue() const;
         void setItemName(string &itemName);
