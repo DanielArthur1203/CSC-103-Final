@@ -6,6 +6,7 @@ add_library(lib STATIC
     Item.cpp
     Shop.cpp
     Event.cpp
+    Enemy.cpp
 )
 
 target_include_directories(lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
