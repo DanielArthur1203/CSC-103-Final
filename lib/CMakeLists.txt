@@ -4,6 +4,8 @@ add_library(lib STATIC
     Game.cpp #Every time a new file is added to this folder need to include it's cpp file here
     Player.cpp
     Item.cpp
+    Shop.cpp
+    Event.cpp
 )
 
 target_include_directories(lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
