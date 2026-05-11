@@ -49,3 +49,13 @@ TEST(PlayerClass, IncreaseItemQuantity){
     testP.increaseItemQuantity(testP.getItemIndex(testI).value(), 4);
     EXPECT_EQ(testP.getItemQuantity(testI).value(), 9);
 }
+
+TEST(PlayerClass, InventoryCleanupWorks){
+    Player testP = Player();
+    ASSERT_EQ(testP.getInventorySize(), 0);
+    Item testI = Item("Sword", 100);
+    testP.addItem(testI, 0);
+    ASSERT_EQ(testP.getInventorySize(), 1);
+    testP.inventoryCleanup();
+    EXPECT_EQ(testP.getInventorySize(), 0);
+}

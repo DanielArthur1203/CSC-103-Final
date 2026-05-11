@@ -25,6 +25,7 @@ class Player{
         string getName() const;
         int getAge() const;
         int getCurrency() const;
+        int getInventorySize() const;
         optional<int> getItemQuantity(string &itemName) const;
         optional<int> getItemQuantity(Item &item) const;
         optional<Item> getItemFromInventory(string &itemName) const;

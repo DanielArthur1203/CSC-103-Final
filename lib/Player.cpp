@@ -1,6 +1,7 @@
 #include "Player.hpp"
 #include "Game.hpp"
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -94,6 +95,14 @@ void Player::increaseItemQuantity(int index, int quantity){
     inventory.at(index).second += quantity;
 }
 
+//removes any pairs in inventory that have a quantity of 0
 void Player::inventoryCleanup(){
-    //TODO Remove an pairs in the inventory that a quantity less than or equal to 0
+    //Info about how erase_if works comes from here https://en.cppreference.com/cpp/container/vector/erase2
+    erase_if(inventory, [](pair<Item, int> p){
+        return p.second == 0;
+    });
+}
+
+int Player::getInventorySize() const{
+    return inventory.size();
 }

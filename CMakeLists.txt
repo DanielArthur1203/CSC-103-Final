@@ -22,4 +22,4 @@ add_subdirectory(tests)
 
 add_executable(main main.cpp)
 target_link_libraries(main PRIVATE lib)
-set_target_properties(main PROPERTIES WIN32_EXECUTABLE OFF) #Again for Windows
+
