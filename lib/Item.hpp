@@ -1,7 +1,8 @@
 #ifndef ITEM_HPP
 #define ITEM_HPP
 
-#include "Game.hpp"
+//#include "Game.hpp"
+#include "Constants.hpp"
 #include <string>
 #include <utility>
 
@@ -15,6 +16,7 @@ class Item{
 
         Item(){
             itemName = "nothing";
+            //value = 100;
             value = to_underlying(extremeValues::minValue);
         }
 

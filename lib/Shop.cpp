@@ -1,5 +1,6 @@
 #include "Shop.hpp"
 #include "Player.hpp"
+#include "Constants.hpp"
 #include <iostream>
 
 using namespace std;

@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <optional>
 #include "Game.hpp"
 #include "Item.hpp"
 #include "Shop.hpp"
@@ -18,6 +19,12 @@ TEST(PlayerClass, GetItemQuantityNoCrash){
     ASSERT_NO_THROW(test.addItem(testI, 1));
     ASSERT_NO_THROW(test.addItem(testJ));
     EXPECT_EQ(test.getItemQuantity(name), 1);
+}
+
+TEST(PlayerClass, GetItemQuantityProperNullopt){
+    Player test = Player();
+    string name = "Water";
+    EXPECT_EQ(test.getItemQuantity(name), nullopt);
 }
 
 TEST(PlayerClass, GetItemFromInventory){
@@ -59,3 +66,4 @@ TEST(PlayerClass, InventoryCleanupWorks){
     testP.inventoryCleanup();
     EXPECT_EQ(testP.getInventorySize(), 0);
 }
+

@@ -2,7 +2,7 @@
 #define SHOP_HPP
 
 #include "Item.hpp"
-#include "Game.hpp"
+//#include "Game.hpp"
 #include "Player.hpp"
 #include <utility>
 #include <vector>

@@ -6,7 +6,8 @@
 #include <utility>
 #include <optional>
 #include "Item.hpp"
-#include "Game.hpp"
+#include "Constants.hpp"
+//#include "Game.hpp"
 
 using namespace std;
 
@@ -14,12 +15,15 @@ class Player{
     public:
         Player(string name, int age) : name(name), age(age){
             currency = to_underlying(extremeValues::defaultCurrency);
+            //currency = 0;
         } //member initializer list
 
         Player(){
             name = "nothing";
+            //age = 18;
             age = to_underlying(extremeValues::minAge);
             currency = to_underlying(extremeValues::defaultCurrency);
+            //currency = 0;
         }
 
         string getName() const;
