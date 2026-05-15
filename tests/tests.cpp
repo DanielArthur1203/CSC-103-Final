@@ -5,6 +5,9 @@
 #include "Shop.hpp"
 #include "Event.hpp"
 #include "Player.hpp"
+#include "HealthUpItem.hpp"
+#include "LuckUpItem.hpp"
+#include "AttackUpItem.hpp"
 
 using namespace std;
 
@@ -65,5 +68,38 @@ TEST(PlayerClass, InventoryCleanupWorks){
     ASSERT_EQ(testP.getInventorySize(), 1);
     testP.inventoryCleanup();
     EXPECT_EQ(testP.getInventorySize(), 0);
+}
+
+TEST(ItemSubclasses, HealthUpWorks){
+    Player testP = Player();
+    HealthUpItem potion("Potion", 250, 50);
+    Item &test = potion;
+    string name = "Potion";
+    ASSERT_NO_THROW(testP.addItem(test, 1));
+    ASSERT_EQ(testP.getInventorySize(), 1);
+
+    EXPECT_NE(testP.getItemFromInventory(name), nullopt);
+    ASSERT_NE(testP.getItemIndex(test), nullopt);
+
+    testP.useAnItem(test);
+    EXPECT_EQ(testP.getHealth(), 150);
+}
+
+TEST(ItemSubclasses, LuckUpWorks){
+    Player testP = Player();
+    LuckUpItem charm("Charm", 500, 30);
+    Item &testItem = charm;
+
+    testP.useAnItem(testItem);
+    EXPECT_EQ(testP.getLuck(), 31);
+}
+
+TEST(ItemSubclasses, AttackUpWorks){
+    Player testP = Player();
+    AttackUpItem sword("Sword", 1000, 200);
+    Item &testItem = sword;
+
+    testP.useAnItem(testItem);
+    EXPECT_EQ(testP.getAttack(), 210);
 }
 

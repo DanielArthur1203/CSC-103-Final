@@ -11,8 +11,8 @@ Shop::Shop(){
 
 optional<Item> Shop::getItemFromShop(string &name) const{
     for(auto it = shopInventory.begin(); it != shopInventory.end(); ++it){
-        if(it->first.getItemName() == name){
-            return it->first;
+        if(it->first->getItemName() == name){
+            return *(it->first);
         }
     }
     return nullopt;
@@ -22,8 +22,7 @@ optional<Item> Shop::getItemFromShop(string &name) const{
 int Shop::getItemLocation(Item &item) const{
     int loc = 0;
     for(int i = 0; i < shopInventory.size(); i++){
-        pair<Item, int> test = shopInventory.at(i);
-        if(test.first == item){
+        if(*(shopInventory.at(i).first) == item){
             loc = i;
             break;
         }
