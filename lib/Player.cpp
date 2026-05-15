@@ -55,8 +55,9 @@ optional<Item> Player::getItemFromInventory(string &itemName) const{
 void Player::printInventory() const{
     cout << "Your inventory: \n";
     for(auto it = inventory.begin(); it != inventory.end(); ++it){
-        cout << it->first->getItemName() << " ................................ " << it->second << "\n";
+        cout << it->first->getItemName() << "\t................................\t" << it->second << "\n";
     }
+    cout << "\n\n\n";
 }
 
 void Player::setName(string &name){

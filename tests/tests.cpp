@@ -41,6 +41,7 @@ TEST(PlayerClass, GetItemFromInventory){
     EXPECT_NE(testP.getItemFromInventory(name), testI2);
 }
 
+//Need to debug this test to see the output
 TEST(PlayerClass, PrintInventory){
     Player testP = Player("test", 35);
     string words[] = {"A", "b", "c", "d", "e", "f", "g"};
@@ -48,7 +49,6 @@ TEST(PlayerClass, PrintInventory){
         ASSERT_NO_THROW(testP.printInventory());
         Item item = Item(words[i]);
         testP.addItem(item);
-        cout << "\n\n\n";
     }
 }
 
@@ -103,3 +103,23 @@ TEST(ItemSubclasses, AttackUpWorks){
     EXPECT_EQ(testP.getAttack(), 210);
 }
 
+//Debug test to see output
+TEST(ShopClass, PrintShopInventory){
+    Shop shop = Shop();
+    ASSERT_NO_THROW(shop.printShopInventory());
+}
+
+TEST(ShopClass, BuyItemWorks){
+    Shop shop = Shop();
+    Player testP = Player();
+    string name = "Rusty Sword";
+    testP.setCurrency(1000);
+
+    shop.printShopInventory();
+    ASSERT_NO_THROW(shop.buyItem(testP, name, 3));
+    EXPECT_EQ(testP.getInventorySize(), 1);
+    EXPECT_EQ(testP.getCurrency(), 400);
+    EXPECT_EQ(testP.getItemQuantity(name), 3);
+    EXPECT_NE(testP.getItemFromInventory(name), nullopt);
+    shop.printShopInventory();
+}

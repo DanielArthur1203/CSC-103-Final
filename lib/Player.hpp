@@ -60,7 +60,7 @@ class Player{
         string name;
         int attack;
         int health;
-        int luck;
+        int luck; //higher luck = better dice rolls. Each item should add +1 luck.
         int age;
         int currency; //The amount of "money" the player has
         //I know about smart pointers from here https://en.cppreference.com/cpp/memory/unique_ptr
