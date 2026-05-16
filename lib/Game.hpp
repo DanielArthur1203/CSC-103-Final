@@ -3,19 +3,31 @@
 
 #include "Player.hpp"
 #include "Shop.hpp"
-#include <memory>
+#include "Minigames.hpp"
+#include <string>
 
 using namespace std;
 
-//Info on enum classes came from here https://en.cppreference.com/cpp/language/enum
-class Game{
-    public:
-        Game() = default;
-    private:
-        Player currentPlayer;
-        Shop currentShop; 
-        //essentially a "save" system for this game where the user can "reload"
-        unique_ptr<Game[]> saveArray = make_unique<Game[]>(3);
+class Game
+{
+public:
+    Game() = default;
+    void run();
+
+private:
+    Player currentPlayer;
+    Shop currentShop;
+    Minigames minigames;
+
+    void startRun();
+    void chooseStartingCharm();
+
+    void testDiceRoom();
+    void testBlackjackRoom();
+
+    void blackjackDuel(string enemyName, int enemyHealth, int enemyDamage, int enemyStandThreshold);
+
+    bool playerDead();
 };
 
 #endif
