@@ -8,6 +8,7 @@ add_library(lib STATIC
     Event.cpp
     Enemy.cpp
     Constants.hpp
+    Minigames.cpp
     AttackUpItem.cpp
     LuckUpItem.cpp
     HealthUpItem.cpp

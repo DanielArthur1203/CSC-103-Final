@@ -1,11 +1,13 @@
-#include <iostream>
 #include "Game.hpp"
-#include "Item.hpp"
-#include "AttackUpItem.hpp"
-#include "Player.hpp"
-using namespace std;
+#include <cstdlib>
+#include <ctime>
 
-int main(){
-    cout << "test";
+int main()
+{
+    srand(time(0));
+
+    Game game;
+    game.run();
+
     return 0;
 }
