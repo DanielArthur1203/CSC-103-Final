@@ -1,5 +1,5 @@
 #include "Item.hpp"
-
+#include "Player.hpp"
 string Item::getItemName() const{
     return itemName;
 }
@@ -14,4 +14,8 @@ int Item::getValue() const{
 
 void Item::setValue(int value){
     this->value = value;
+}
+
+void Item::useItem(Player &player){
+    (void)player;
 }

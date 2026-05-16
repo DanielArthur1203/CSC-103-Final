@@ -1,12 +1,14 @@
 #ifndef ITEM_HPP
 #define ITEM_HPP
 
-//#include "Game.hpp"
 #include "Constants.hpp"
 #include <string>
 #include <utility>
 
 using namespace std;
+
+//Forward declaration to prevent circular linking
+class Player;
 
 class Item{
     public:
@@ -30,6 +32,10 @@ class Item{
         int getValue() const;
         void setItemName(string &itemName);
         void setValue(int value);
+        //Learned about virtual from here https://www.w3schools.com/cpp/cpp_virtual_functions.asp
+        //Need it so the subclasses override properly
+        virtual void useItem(Player &player);
+        virtual ~Item() = default;
     private:
         string itemName;
         int value;
